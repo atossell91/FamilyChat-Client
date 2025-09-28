@@ -1,0 +1,35 @@
+* {
+    font-size: 1.5rem;
+}
+
+button {
+    padding: 1rem;
+}
+
+.input-area {
+    display: flex;
+    flex-direction: column;
+}
+
+.button-area {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.message-bubble {
+    padding: 1rem;
+    border-radius: 1rem;
+    width: fit-content;
+}
+
+.message-bubble-self {
+    background-color: lime;
+    color: black;;
+    justify-content: right;
+}
+
+.message-bubble-other {
+    background-color: blue;
+    color: white;
+}
