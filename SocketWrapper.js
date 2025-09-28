@@ -1,3 +1,5 @@
+import { MessageTypes } from "./MessageTypes.js";
+
 class SocketWrapper extends EventTarget {
     constructor(host, port, path="/", userid) {
         super();
@@ -11,7 +13,8 @@ class SocketWrapper extends EventTarget {
             this.SendObject({
                 Name: this.user,
                 Message: "CONNECT",
-                Target: "None"
+                Target: "None",
+                Type: MessageTypes.Connection,
             });
         });
     }

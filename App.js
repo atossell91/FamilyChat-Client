@@ -1,4 +1,5 @@
 import { SocketWrapper } from "./SocketWrapper.js";
+import { MessageTypes } from "./MessageTypes.js";
 
 class App {
     constructor() {
@@ -62,7 +63,7 @@ class App {
     }
 
     SendMessage() {
-        if (this.Connection === null || !this.Connection.IsActive() || this.msgelem.value === "") {
+        if (this.Connection === null || !this.Connection.IsActive() || this.messageElem.value === "") {
             console.log("The connection is bad, or there is no data to send");
             return;
         }
@@ -72,7 +73,8 @@ class App {
         const obj = {
             name: nameStr,
             message: msgStr,
-            target: "*"
+            target: "*",
+            type: MessageTypes.Chat,
         };
         this.Connection.SendObject(obj);
 
