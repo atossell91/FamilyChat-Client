@@ -34,7 +34,7 @@ class App {
 
         this.Connection = new SocketWrapper("localhost", 5178, "/ws", "Ant");
 
-        this.Connection.addEventListener("MessageReceived", (event)=>{ console.log("Recvd!") });
+        this.Connection.addEventListener("MessageReceived", (event)=>{ this.HandleMessage(event) });
     }
 
     CreateMessageBubble(messageType, messageData) {
@@ -49,8 +49,8 @@ class App {
     }
 
     HandleMessage(ev) {
-        console.log(ev);
-        const msgelem = this.CreateMessageBubble("other", "Hello!");
+        //console.log(ev.detail.Name);
+        const msgelem = this.CreateMessageBubble("other", ev.detail.Message);
         this.messageArea.appendChild(msgelem);
     }
 
@@ -71,10 +71,10 @@ class App {
         const nameStr = this.nameElem.value;
         const msgStr = this.messageElem.value;
         const obj = {
-            name: nameStr,
-            message: msgStr,
-            target: "*",
-            type: MessageTypes.Chat,
+            Name: nameStr,
+            Message: msgStr,
+            Target: ["Ant"],
+            Type: MessageTypes.Chat,
         };
         this.Connection.SendObject(obj);
 

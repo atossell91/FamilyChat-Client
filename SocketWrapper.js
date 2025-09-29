@@ -13,7 +13,7 @@ class SocketWrapper extends EventTarget {
             this.SendObject({
                 Name: this.user,
                 Message: "CONNECT",
-                Target: "None",
+                Target: [],
                 Type: MessageTypes.Connection,
             });
         });
@@ -24,7 +24,10 @@ class SocketWrapper extends EventTarget {
     }
 
     DispatchMessageEvent(event) {
-        this.dispatchEvent(new CustomEvent("MessageReceived", event));
+        const data = JSON.parse([event["data"]]);
+        this.dispatchEvent(new CustomEvent("MessageReceived", {
+            detail: data
+        }));
     }
 
     SendObject(object) {
