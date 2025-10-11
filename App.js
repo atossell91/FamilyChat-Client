@@ -20,7 +20,46 @@ class App {
         this.btnClose.addEventListener("click", ()=>{ this.CloseSocket(); });
     }
 
-    Run() {}
+    handleCredentialResponse(res) {
+        console.log(res);
+    }
+
+    googli() {
+        console.log("Attempting to use google")
+        google.accounts.id.initialize({
+            client_id: "530024699390-bps7hrfrkrd7hqgs7rlnfo0sut3040a3.apps.googleusercontent.com",
+            callback: this.handleCredentialResponse
+        });
+        google.accounts.id.renderButton(
+            document.getElementById("google-signin"),
+            { theme: "outline", size: "large" }  // customization attributes
+        );
+        google.accounts.id.prompt(); // also display the One Tap dialog
+    }
+
+    // Same as loadScript, kept around for informational use
+    oldLoadScript(url, callback) {
+        const script = document.createElement("script");
+        script.onload = ()=>{ callback(); }
+        script.setAttribute("src", url);
+        document.getElementsByTagName("head")[0].append(script);
+    }
+
+    loadScript(url) {
+        return new Promise((resolve)=>{
+            const script = document.createElement("script");
+            script.onload = resolve
+            script.setAttribute("src", url);
+            document.getElementsByTagName("head")[0].append(script);
+        });
+    }
+
+    Run() {
+        //this.loadScript("https://accounts.google.com/gsi/client", ()=>{ this.googli(); })
+        this.loadScript("https://accounts.google.com/gsi/client").then(()=>{
+            this.googli();
+        })
+    }
 
     CloseSocket() {
         this.Connection.Close();

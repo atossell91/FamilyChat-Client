@@ -3,20 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        function alina() {
+            console.log("Script loaded!");
+        }
+    </script>
+    <!--<script src="https://accounts.google.com/gsi/client" id="google-code" onload="alina()" async defer></script>-->
     <script src="./init.js" type="module"></script>
     <link rel="stylesheet" href="./index.css">
     <title>Document</title>
 </head>
 <body>
-    <div class="message-area" id="message-area"></div>
-    <div class="input-area">
-        <input type="text" id="message" placeholder="Message"/>
-        <input type="text" id="name" placeholder="User"/>
+    <div id="signin-view">
+        <div id="google-signin"></div>
     </div>
-    <div class="button-area" id="btn-area">
-        <button id="btn-send">Send</button>
-        <button id="btn-connect">Connect</button>
-        <button id="btn-close">Hangup</button>
+    <div id="message-view">
+        <div class="message-area" id="message-area"></div>
+        <div class="input-area">
+            <input type="text" id="message" placeholder="Message"/>
+            <input type="text" id="name" placeholder="User"/>
+        </div>
+        <div class="button-area" id="btn-area">
+            <button id="btn-send">Send</button>
+            <button id="btn-connect">Connect</button>
+            <button id="btn-close">Hangup</button>
+        </div>
     </div>
 </body>
 </html>
